@@ -1,5 +1,7 @@
 # LeetCode-Solutions
 
+Read the rules.md and start contributing GOOD LUCK !!!
+
 <img align="center" src="https://github.com/OyePradumya/Collection/blob/1366c0bd85b6d2a9f38c19998bfe4ae961581bb1/hacktoberfest-2022.png">
 
 A Beginner friendly repo to push PRs for Hacktoberfest 2022.
