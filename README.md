@@ -3,7 +3,7 @@
 <img align="center" src="https://github.com/OyePradumya/Collection/blob/1366c0bd85b6d2a9f38c19998bfe4ae961581bb1/hacktoberfest-2022.png">
 
 <p align="center">
-<a href="https://github.com/Architgupta001/LeetCode-Solutions/stargazers"><img src="https://github.com/Architgupta001/LeetCode-Solutions/stargazers" alt="github stars"></a>
+<a href="https://github.com/Architgupta001/LeetCode-Solutions/stargazers"><img src="https://img.shields.io/github/stars/Architgupta001/LeetCode-Solutions?style=for-the-badge" alt="github stars"></a>
 <a href="https://github.com/OyePradumya/Collection/network/members"><img src="https://img.shields.io/github/forks/OyePradumya/Collection?style=for-the-badge" alt="github forks"></a>
 <a href="https://github.com/OyePradumya/Collection/issues"><img src="https://img.shields.io/github/issues-raw/OyePradumya/Collection?style=for-the-badge" alt="open issues"></a>
 <a href="https://github.com/OyePradumya/Collection/issues"><img src="https://img.shields.io/github/issues-closed-raw/OyePradumya/Collection?style=for-the-badge" alt="closed issues"><a/>
