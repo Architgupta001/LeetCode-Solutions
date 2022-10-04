@@ -12,10 +12,9 @@ template <typename T>
 using o_multiset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
 //member functions :
 //1. order_of_key(k) : number of elements strictly lesser than k
-//2. find_by_order(k) : k-th element in the set (0-indexed)
-//3. st.erase(st.find_by_order(st.order_of_key(k))) :to erase a single occurence of k from the set
+//2. find_by_order(k) : k-th element in the set
 
-//Optimisations (Black Magic)
+//Optimisations (Black Magic 🌑)
 #pragma GCC optimize("O3,unroll-loops")
 #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
 
@@ -94,72 +93,68 @@ template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_pr
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(unordered_map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 
-struct custom_hash {
-    static uint64_t splitmix64(uint64_t x) {
-        // http://xorshift.di.unimi.it/splitmix64.c
-        x += 0x9e3779b97f4a7c15;
-        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
-        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
-        return x ^ (x >> 31);
-    }
-
-    size_t operator()(uint64_t x) const {
-        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
-        return splitmix64(x + FIXED_RANDOM);
-    }
-};
-
 // ------------------------Do not write above this line-----------------------------------------------------------------------------------------------------------------
-bool comp(pl a,pl b){
-    if(a.ff==b.ff){
-        return a.ss>b.ss;
+//Segment-Tree (Max-Update, Max-Query)
+//1-based indexing
+//pass the vectors as reference
+void build_segtree(vl &vec,ll curr,ll l,ll r,vl &segtree,ll n){
+    if(l==r){
+        segtree[curr]=vec[l];
     }
-    return a.ff<b.ff;
+    else{
+        int mid=(l+r)/2;
+        build_segtree(vec,2*curr,l,mid,segtree,n);
+        build_segtree(vec,2*curr+1,mid+1,r,segtree,n);
+        segtree[curr]=max(segtree[2*curr],segtree[2*curr+1]);
+    }
 }
+
+ll max_segtree(ll curr,ll curr_l,ll curr_r,ll l,ll r,vl &segtree){
+    if(l>r){
+        return 0;
+    }
+
+    if(l==curr_l and r==curr_r){
+        return segtree[curr];
+    }
+
+    ll mid=(curr_l+curr_r)/2;
+    return max(max_segtree(2*curr,curr_l,mid,l,min(r,mid),segtree),max_segtree(2*curr+1,mid+1,curr_r,max(l,mid+1),r,segtree));
+}
+
+void update_segtree(ll curr,ll l,ll r,ll pos,ll new_val,vl &segtree){
+    if(l==r){
+        segtree[curr]=new_val;
+    }
+    else{
+        ll mid=(l+r)/2;
+        if(pos<=mid){
+            update_segtree(2*curr,l,mid,pos,new_val,segtree);
+        }
+        else{
+            update_segtree(2*curr+1,mid+1,r,pos,new_val,segtree);
+        }
+        segtree[curr]=max(segtree[2*curr],segtree[2*curr+1]);
+    }
+}
+
 void solve(){
     ll n;
     cin>>n;
-
     vl vec(n);
     input(vec);
 
-    unordered_map<ll,ll,custom_hash>mp;
-    vpl v;
-    for(int i=0;i<n;i++){
-        mp[i]=vec[i];
-        v.pb({vec[i],i});
-    }
-    sort(all(v),comp);
-    reverse(all(v));
-    // debug(v);
+    vl segtree(4*n+1);
+    //TreeBuild
+    build_segtree(vec,1,0,n-1,segtree,n); //(input array,curr. vertex,start,end,segtree array,size)
 
-    // debug(mp);
-    ll m;
-    cin>>m;
-    unordered_map<ll,vl,custom_hash>queries;
-    vpl q;
-    while(m--){
-        ll k,pos;
-        cin>>k>>pos;
-        pos--;
-        q.pb({k,pos});
-        queries[k].pb(pos);
-    }
+    //Max-query
+    cout<<max_segtree(1,0,n-1,0,4,segtree)<<endl;
 
-    map<pl,ll>ans;
-    ordered_set<ll>st;
-    for(auto it:v){
-        st.insert(it.ss);
-        ll sz=st.size();
-        for(auto it:queries[sz]){
-            ll req=*st.find_by_order(it);
-            ans[{sz,it}]=mp[req];
-        }
-    }
-    // debug(ans);
-    for(auto it:q){
-        cout<<ans[it]<<endl;
-    }
+    //Update-query
+    update_segtree(1,0,n-1,2,10,segtree);
+    cout<<max_segtree(1,0,n-1,0,2,segtree)<<endl;
+
 }
 
 int main(){
