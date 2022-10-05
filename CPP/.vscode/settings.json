@@ -27,5 +27,8 @@
     "**/.*/**",
     "**/.vscode",
     "**/.vscode/**"
-  ]
+  ],
+  "files.associations": {
+    "xstring": "cpp"
+  }
 }
