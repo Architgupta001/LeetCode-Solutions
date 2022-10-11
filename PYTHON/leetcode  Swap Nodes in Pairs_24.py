@@ -1,29 +1,29 @@
 class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
+    def __init__(self, v=0, next=None):
+        self.v = v
         self.next = next
         
 class Solution:
     def swapPairs(self, head: ListNode) -> ListNode:
 
-        root = front = ListNode(None)
-        front.next = head
+        r = f = ListNode(None)
+        f.next = head
         while head and head.next:
-            temp = head.next
-            head.next = temp.next
-            temp.next = head
+            str = head.next
+            head.next = str.next
+            str.next = head
 
-            front.next = temp
+            f.next = str
             head = head.next
-            front = front.next.next
+            f = f.next.next
 
-        return root.next
+        return r.next
 
 if __name__=="__main__":
     solution = Solution()
     head = ListNode(1,ListNode(2, ListNode(3, ListNode(4, None))))
-    ret = solution.swapPairs(head)
-    now = ret
-    while now is not None:
-        print(now.val, end = " ")
-        now = now.next
+    re = solution.swapPairs(head)
+    go = re
+    while go is not None:
+        print(go.v, end = " ")
+        go = go.next
