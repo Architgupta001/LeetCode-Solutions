@@ -1,33 +1,35 @@
-# LeetCode-Solutions
+<h2><a href="https://leetcode.com/problems/unique-paths-ii/">63. Unique Paths II</a></h2><h3>Medium</h3><hr><div><p>A robot is located at the top-left corner of a <code>m x n</code> grid (marked 'Start' in the diagram below).</p>
 
-Read the rules.md and start contributing GOOD LUCK !!!
+<p>The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).</p>
 
-<img align="center" src="https://github.com/OyePradumya/Collection/blob/1366c0bd85b6d2a9f38c19998bfe4ae961581bb1/hacktoberfest-2022.png">
+<p>Now consider if some obstacles are added to the grids. How many unique paths would there be?</p>
 
-A Beginner friendly repo to push PRs for Hacktoberfest 2022.
+<p>An obstacle and space is marked as <code>1</code> and <code>0</code> respectively in the grid.</p>
 
-## What is Hacktoberfest?
+<p>&nbsp;</p>
+<p><strong>Example 1:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2020/11/04/robot1.jpg" style="width: 242px; height: 242px;">
+<pre><strong>Input:</strong> obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]
+<strong>Output:</strong> 2
+<strong>Explanation:</strong> There is one obstacle in the middle of the 3x3 grid above.
+There are two ways to reach the bottom-right corner:
+1. Right -&gt; Right -&gt; Down -&gt; Down
+2. Down -&gt; Down -&gt; Right -&gt; Right
+</pre>
 
-It is open to everyone in our global community. Whether you’re a developer, student learning to code, event host, or company of any size, you can help drive growth of open source and make positive contributions to an ever-growing community. All backgrounds and skill levels are encouraged to complete the challenge.
+<p><strong>Example 2:</strong></p>
+<img alt="" src="https://assets.leetcode.com/uploads/2020/11/04/robot2.jpg" style="width: 162px; height: 162px;">
+<pre><strong>Input:</strong> obstacleGrid = [[0,1],[0,0]]
+<strong>Output:</strong> 1
+</pre>
 
-- Hacktoberfest is a celebration open to everyone in our global community.
-- Pull requests can be made in any GitHub-hosted repositories/projects with [hacktoberfest](https://github.com/search?q=hacktoberfest) topic added.
-- You can sign up anytime between October 1 and October 31.
-***
-# 👕 Why Should I Contribute?
-Hacktoberfest has a simple and plain moto
-> Support open source with meaningful PRs and earn a limited edition T-shirt!
+<p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
 
-So, yes! You can win a T-Shirt and few awesome stickers to attach on your laptop. On plus side, you will get into beautiful world of open source.<br>
-Working with open source project is a rewarding experience that allows you to practice your talent, collaborate with and learn from others, and give back to the developer community. 
-### NOTE:
-* making four (4) meaningful contributions to open source projects will qualify you for prizes
-* Scripts to be added in there respective folder with proper doumentaion.
-* Read GUIDELINES.md before making a PR.
-
-***
-
-## IMPORTANT INSTRUCTIONS
-You must register and make four valid pull requests (PRs) between October 1-31 (in any time zone). PRs made before or after that won't be counted!!
-
-Visit the hactoberfest site for more details :- https://hacktoberfest.digitalocean.com
+<ul>
+	<li><code>m ==&nbsp;obstacleGrid.length</code></li>
+	<li><code>n ==&nbsp;obstacleGrid[i].length</code></li>
+	<li><code>1 &lt;= m, n &lt;= 100</code></li>
+	<li><code>obstacleGrid[i][j]</code> is <code>0</code> or <code>1</code>.</li>
+</ul>
+</div>
