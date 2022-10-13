@@ -7,4 +7,6 @@ class Solution:
                 result += accounts[i][j]
             rlt.append(result)
         rlt.sort()
+
         return rlt[len(rlt) - 1]
+        
