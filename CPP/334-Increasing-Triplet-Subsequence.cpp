@@ -1,28 +1,21 @@
 class Solution {
 public:
-    
-    void dfs(vector<vector<char>> &grid,int i,int j){
-        if(i>=grid.size() || i<0 || j<0 || j>=grid[0].size()) return;
-        if(grid[i][j]=='2' || grid[i][j]=='0') return;
-        
-        grid[i][j]='2';
-        
-        dfs(grid,i+1,j);
-        dfs(grid,i-1,j);
-        dfs(grid,i,j-1);
-        dfs(grid,i,j+1);
-    }
-    
-    int numIslands(vector<vector<char>>& grid) {
-        int island=0;
-        for(int i=0;i<grid.size();i++){
-            for(int j=0;j<grid[0].size();j++){
-                if(grid[i][j]=='1'){
-                    dfs(grid,i,j);
-                    island++;
-                }
-            }
+    bool increasingTriplet(vector<int>& nums) {
+        int n = nums.size();
+        if(n<3) return false;
+
+        vector<int> leftMin(n) ,rightMin(n);
+        leftMin[0]=nums[0];
+        for(int i=1;i<n;i++){
+            leftMin[i]=min(nums[i],leftMin[i-1]);
         }
-        return island;
+        rightMin[n-1]=nums[n-1];
+        for(int i=n-2;i>=0;i--){
+            rightMin[i]=max(nums[i],rightMin[i+1]);
+        }
+        for(int i=1;i<n-1;i++){
+            if(leftMin[i-1] < nums[i] && nums[i] < rightMin[i+1]) return true;
+        }
+        return false;
     }
 };
