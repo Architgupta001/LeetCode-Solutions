@@ -1,24 +1,18 @@
 /* Leetcode Question-> https://leetcode.com/problems/valid-anagram/ */
-/* Name: Vidip Ghosh */
-#include<iostream>
-#include<algorithm>
-using namespace std;
-
-class Solution{
-    public:
-    bool isAnagram(string s1,string s2)
-    {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        if(l1!=l2)
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int n1 = s.length();
+        int n2 = t.length();
+        if(n1!=n2)
         {
             return false;
         }
-        sort(s1.begin(),s1.end());
-        sort(s2.begin(),s2.end());
-        for(int i=0;i<l1;i++)
+        sort(s.begin(),s.end());
+        sort(t.begin(),t.end());
+        for(int i=0;i<n1;i++)
         {
-            if(s1[i]!=s2[i])
+            if(s[i]!=t[i])
             {
                 return false;
             }
@@ -26,19 +20,3 @@ class Solution{
         return true;
     }
 };
-
-int main()
-{
-    Solution s;
-    string s1,s2;
-    cout<<"Enter two strings: ";
-    cin>>s1>>s2;
-    if(s.isAnagram(s1,s2))
-    {
-        cout<<"Two strings are anagram"<<endl;
-    }
-    else
-    {
-        cout<<"Not an anagram"<<endl;
-    }
-}
